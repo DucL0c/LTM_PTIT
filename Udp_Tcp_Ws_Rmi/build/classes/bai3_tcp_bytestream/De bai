@@ -1,0 +1,13 @@
+[Mã câu hỏi (qCode): NhDek2Hl]. Một chương trình server hỗ trợ kết nối qua giao thức TCP tại cổng 2206 (hỗ trợ thời gian giao tiếp tối đa cho mỗi yêu cầu là 5s).
+Yêu cầu xây dựng chương trình client thực hiện kết nối tới server trên sử dụng luồng byte dữ liệu (InputStream/OutputStream) để trao đổi thông tin theo thứ tự:
+
+a. Gửi mã sinh viên và mã câu hỏi theo định dạng ";studentCode;qCode". Ví dụ: ";B21DCCN492;NhDek2Hl"
+
+b. Nhận dữ liệu từ server là một chuỗi ký tự ngẫu nhiên (bao gồm chữ cái và chữ số) có độ dài ngẫu nhiên (từ 20 đến 100 ký tự).
+Ví dụ: "a4d2b5c1x4e9y3h2a9"
+
+c. Thực hiện tìm ký tự xuất hiện nhiều thứ hai trong chuỗi và gửi ký tự đó cùng số lần xuất hiện của nó cho server theo định dạng "ký tự;n".
+Ví dụ: "a;3"
+Nếu có nhiều kí tự có số lần xuất hiện thứ 2 thì in ra ký tự xuất hiện nhiều thứ hai đầu tiên theo thứ tự a-z, 0-9
+
+d. Đóng kết nối và kết thúc.

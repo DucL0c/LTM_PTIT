@@ -1,0 +1,25 @@
+[Mã câu hỏi (qCode): 2].  Một chương trình server cho phép giao tiếp qua giao thức TCP tại cổng 2209. 
+Yêu cầu xây dựng một chương trình client giao tiếp với server để gửi/nhận các đối tượng Book theo mô tả dưới đây:
+
+
+a. Đối tượng trao đổi là thể hiện của lớp Book được mô tả như sau:
+    • Tên đầy đủ của lớp: TCP.Book
+    • Các thuộc tính: id String, title String, author String, price double, pageCount int.
+    • Trường dữ liệu: private static final long serialVersionUID = 20102003;
+
+b. Giao tiếp với server theo kịch bản sau:
+    1. Yêu cầu từ Client đến Server:
+        • Gửi một thông điệp chứa mã sinh viên và mã câu hỏi theo định dạng ";studentCode;qCode". Ví dụ: ";B21DCCN492;2".
+    2. Phản hồi từ Server đến Client:
+        • Server nhận yêu cầu, tạo ra một đối tượng Book và gửi về Client. Phản hồi sẽ chứa:
+            • 08 byte đầu tiên là chuỗi requestId.
+            • Các byte còn lại là một đối tượng Book, với các thuộc tính id, title, author, price và pageCount đã được thiết lập giá trị.
+    3. Yêu cầu xử lý từ Client:
+        • Sau khi nhận đối tượng Book, client cần thực hiện các thao tác xử lý như sau:
+           • title: Đảo ngược thứ tự các từ trong tiêu đề sách. Ví dụ, "The Great Adventure" cần chuyển thành "Adventure Great The".
+           • author: Viết hoa chữ cái đầu của từng từ trong tên tác giả. Ví dụ, "jules vErNe" cần chuyển thành "Jules Verne".
+           • price: Tăng giá thêm 20% nếu số lượng trang (pageCount) lớn hơn 300.
+        • Sau khi xử lý, Client đóng gói đối tượng Book đã được sửa đổi và gửi lại cho Server theo cấu trúc:
+            • 08 byte đầu tiên là chuỗi requestId.
+            •Các byte còn lại là đối tượng Book đã được cập nhật.
+        • Đóng socket và kết thúc chương trình.

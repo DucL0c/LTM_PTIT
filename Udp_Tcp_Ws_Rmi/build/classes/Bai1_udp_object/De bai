@@ -1,0 +1,25 @@
+[Mã câu hỏi (qCode): 1].  Một chương trình server cho phép giao tiếp qua giao thức UDP tại cổng 2209. 
+Yêu cầu xây dựng một chương trình client giao tiếp với server để gửi/nhận các đối tượng Employee theo mô tả dưới đây:
+
+a. Đối tượng trao đổi là thể hiện của lớp Employee được mô tả như sau:
+    • Tên đầy đủ của lớp: UDP.Employee
+    • Các thuộc tính: id String, name String, position String, salary double
+    • Trường dữ liệu: private static final long serialVersionUID = 20102003;
+
+b. Giao tiếp với server theo kịch bản sau:
+    1. Yêu cầu từ Client đến Server:
+        • Gửi một thông điệp chứa mã sinh viên và mã câu hỏi theo định dạng ";studentCode;qCode". Ví dụ: ";B21DCCN001;1".
+    2. Phản hồi từ Server đến Client:
+        • Server nhận yêu cầu, tạo ra một đối tượng Employee và gửi về Client. Phản hồi sẽ chứa:
+            • 08 byte đầu tiên là chuỗi requestId.
+            • Các byte còn lại là một đối tượng Employee, với các thuộc tính id, name, position, và salary đã được thiết lập giá trị.
+    3. Yêu cầu xử lý từ Client:
+        • Client nhận đối tượng Employee từ server, và cần xử lý theo quy tắc sau:
+            • Giảm 10% lương nếu chức danh (position) là "Intern".
+            • Tăng 20% lương nếu chức danh là "Manager".
+            • Giữ nguyên lương cho các chức danh khác.
+            • Ký tự đầu tiên của từng từ trong tên là in hoa, các ký tự còn lại của tên là in thường
+        • Sau khi xử lý, Client đóng gói đối tượng Employee đã được sửa đổi và gửi lại cho Server theo cấu trúc:
+            • 08 byte đầu tiên là chuỗi requestId.
+            •Các byte còn lại là đối tượng Employee đã được cập nhật.
+        • Đóng socket và kết thúc chương trình.
